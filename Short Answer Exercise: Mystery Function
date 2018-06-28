@@ -1,0 +1,7 @@
+def mystery(x):               # Here x = 3
+  a = [0, 4, 0, 3, 2]         
+  while x > 0:                # Since x = 3 the program enters the loop
+    x = a[x]                  # a[3] = 3 and hence x is assigned 3. Again x = 3 and therefore 
+                              # the program will get into an infinite loop in the while 
+                              # statement.
+  return "Done"
