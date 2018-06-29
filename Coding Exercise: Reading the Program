@@ -1,0 +1,8 @@
+def getBASIC():
+   b=[]
+   while True:
+      a=input()
+      b.append(a)
+      if a.endswith("END") == True:
+         break
+   return b
