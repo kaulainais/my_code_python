@@ -1,0 +1,7 @@
+def postalValidate(S):
+   a=S.replace(' ','')
+   if a == '':
+      return False
+   elif a[0::2].isalpha() == a[::-2].isdigit() and a[0].isalpha():
+      return a.upper()
+   return False
