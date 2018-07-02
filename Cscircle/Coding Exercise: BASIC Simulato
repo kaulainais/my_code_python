@@ -1,0 +1,32 @@
+# def getBASIC from subtask 1
+def getBASIC():
+   b=[]
+   while True:
+      a=input()
+      b.append(a)
+      if a.endswith("END") == True:
+         break
+   return b
+# def findLine from subtask 2
+def findLine(prog, target):
+   for x in range(0,len(prog)):
+      prog2 = prog[x].split()
+      start = prog2[0]
+      if len(prog2) > 2:
+         end = prog2[2]
+      if start == target:
+         return x
+# def execute from subtask 3
+def execute(prog):
+   location = 0
+   visited = [False] * len(prog)
+   while True:
+      if location==len(prog)-1: return "success"
+      if visited[location] == True: return "infinite loop"
+      #T-currentLine
+      x = prog[location]
+      x = x.split()
+      T = x[2]
+      visited[location] = True
+      location = findLine(prog, T)
+print(execute(getBASIC()))
