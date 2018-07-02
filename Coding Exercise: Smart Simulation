@@ -1,0 +1,12 @@
+def execute(prog):
+   location = 0
+   visited = [False] * len(prog)
+   while True:
+      if location==len(prog)-1: return "success"
+      if visited[location] == True: return "infinite loop"
+      #T-currentLine
+      x = prog[location]
+      x = x.split()
+      T = x[2]
+      visited[location] = True
+      location = findLine(prog, T)
