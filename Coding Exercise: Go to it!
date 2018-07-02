@@ -1,0 +1,6 @@
+def findLine(prog, target):
+   for i in prog:
+      w=i.split()
+      if w[0]==target:
+         print (w)
+         return prog.index(i)
