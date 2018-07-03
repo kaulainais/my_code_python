@@ -1,0 +1,10 @@
+S = input()
+if S.endswith("F") == True:
+      a=S[:-1]
+      b=(float(a)-32)*(5/9)
+      print(str(b)+"C")
+      
+else:
+      a=S[:-1]
+      b=(float(a)*(9/5))+(32)
+      print(str(b)+"F")
