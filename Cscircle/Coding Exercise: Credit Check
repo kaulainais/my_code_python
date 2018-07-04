@@ -1,0 +1,9 @@
+def check(S):  
+    if len(S) != 19 or S[4] != ' ' or S[9] != ' ' or S[14] != ' ':return False      
+    S = S.replace(" ", '') # Taking away spaces in the string
+    if len(S) != 16 or not S.isdigit():
+       return False
+    L = map(int, S)  # makes S into a sequence of integers in one step
+    if sum(L) % 10 != 0:  # % calculates the remainder, which should be 0
+       return False
+    return True
