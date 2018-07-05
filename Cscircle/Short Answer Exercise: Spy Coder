@@ -1,0 +1,6 @@
+import string
+alphabet = string.ascii_uppercase
+cc = 'SPY CODER'
+shift = 5
+encrypted = ''.join(map(lambda x: chr((ord(x) - 65 + shift) % 26 + 65) if x in alphabet else x, cc.upper()))
+print(encrypted)
