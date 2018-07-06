@@ -62,3 +62,41 @@ decipheredText = originalTextList[maxIndex]
 
 #print ("Output the most possible original text: " + decipheredText)
 print (decipheredText)
+
+
+----optimized
+def computeGoodness(text):
+    goodness = .0
+    for i in range(len(text)):
+        if text[i].isalpha() == True:
+            goodness += letterGoodness[ord(text[i])-ord('A')]
+    return goodness
+originalTextList = [] # Save all the possible decodings based on shiftCode
+originalText = ""
+goodnessList = [] # Save all the goodness for all the possible shiftCode
+goodness = .0
+cipheredText = input() #INPUT
+cipheredText = cipheredText.upper()
+lenOfCipheredText = len(cipheredText)
+for i in range(26): # i is shiftCode
+    originalText = ""  # Init the originalText each time
+    for j in range(lenOfCipheredText):
+        if cipheredText[j].isalpha() == True:
+            ordNum = ord(cipheredText[j])-i
+            if ordNum < ord('A'):
+                ordNum = ord('Z') + 1 - (ord('A') - ordNum)
+            originalText += chr(ordNum)
+        else:
+            originalText += cipheredText[j]  # Do nothing
+    originalTextList.append(originalText) # Add this text into the list
+    # Comput the goodness for this text and add into the list
+    goodness = computeGoodness(originalText)
+    goodnessList.append(goodness)
+maxIndex = 0 # Get the index of maximal value
+maxGoodness = .0
+for k in range(len(goodnessList)):
+    if goodnessList[k] >= maxGoodness:
+        maxGoodness = goodnessList[k]
+        maxIndex = k
+decipheredText = originalTextList[maxIndex] # Find the text with maximal goodness
+print (decipheredText)
