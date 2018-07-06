@@ -1,0 +1,64 @@
+import string
+#print(letterGoodness) #testing... it's predefined
+#letterGoodness = [ .0817, .0149, .0278, .0425, .1270, .0223, .0202, .0609, .0697,
+ #                   .0015, .0077, .0402, .0241, .0675, .0751, .0913, .0009, .0599,
+  #                  .0633, .0906, .0276, .0098, .0236, .0015, .0197, .0007 ]
+# Assume the right input without error checking…
+def computeGoodness(text):
+    goodness = .0
+    for i in range(len(text)):
+        if text[i].isalpha() == True:
+            goodness += letterGoodness[ord(text[i])-ord('A')]
+    return goodness
+
+# Save all the possible decodings based on shiftCode
+originalTextList = []
+originalText = ""
+# Save all the goodness for all the possible shiftCode
+goodnessList = []
+goodness = .0
+
+#print (“Input the ciphered text:”)
+cipheredText = input()
+#cipheredText = 'LQKP OG CV GKIJV DA VJG BQQ'
+cipheredText = cipheredText.upper()
+lenOfCipheredText = len(cipheredText)
+
+# i is shiftCode
+for i in range(26):
+    # Init the originalText each time
+    originalText = ""
+    for j in range(lenOfCipheredText):
+        if cipheredText[j].isalpha() == True:
+            ordNum = ord(cipheredText[j])-i
+            if ordNum < ord('A'):
+                ordNum = ord('Z') + 1 - (ord('A') - ordNum)
+            originalText += chr(ordNum)
+        else:
+            originalText += cipheredText[j]  # Do nothing
+    originalTextList.append(originalText) # Add this text into the list
+    # Comput the goodness for this text and add into the list
+    goodness = computeGoodness(originalText)
+    goodnessList.append(goodness)
+# Debug options
+#print ('DEBUG: shiftCode: ', i)
+#print ('DEBUG: originalText: ', originalText)
+#print ('DEBUG: goodness: ', goodness)     
+
+# Debug option
+#print (‘DEBUG: goodnessList: ‘, goodnessList)
+# Get the index of maximal value
+maxIndex = 0
+maxGoodness = .0
+for k in range(len(goodnessList)):
+    if goodnessList[k] >= maxGoodness:
+        maxGoodness = goodnessList[k]
+        maxIndex = k
+# Debug option
+#print (‘DEBUG: maxIndex: ‘, maxIndex)
+#print (‘DEBUG: maxGoodness: ‘, maxGoodness)
+# Find the text with maximal goodness
+decipheredText = originalTextList[maxIndex]
+
+#print ("Output the most possible original text: " + decipheredText)
+print (decipheredText)
