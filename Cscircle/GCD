@@ -1,0 +1,10 @@
+What is the output of the following recursive program?
+def gcd(a, b):
+  if b == 0: return a
+  return gcd(b, a % b)
+print(gcd(20, 12))
+print(gcd(50, 10))
+
+
+Your answer:4
+Your answer:10
