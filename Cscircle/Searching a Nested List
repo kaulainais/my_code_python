@@ -1,0 +1,9 @@
+def nestedListContains(NL, target):
+   a=False
+   for x in range(0,len(NL)):
+      if NL[x] == target:
+         a = True
+         break
+      if type(NL[x]) != int:
+         a = nestedListContains(NL[x], target)
+   return a
