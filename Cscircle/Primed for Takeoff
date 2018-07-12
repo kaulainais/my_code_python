@@ -1,0 +1,9 @@
+def isItPrime(n):
+    r = [True] * n
+    r[0] = r[1] = False
+    for i in range(n):
+        if r[i]:
+            for j in range(i+i,n,i):
+                r[j]=False
+    return r
+isPrime=(list(isItPrime(1000001)))
